@@ -292,3 +292,76 @@ public:
         delete[] array;
     }
 };
+
+
+class PriorityQueue
+{
+    maxHeap maxPQ;
+
+public:
+    void insert(int element)
+    {
+        maxPQ.insertElement(element);
+    }
+
+    int extractMax()
+    {
+        if (maxPQ.isEmpty())
+        {
+            throw runtime_error("Priority Queue is empty");
+        }
+        int maxElement = maxPQ.peek();
+        maxPQ.removeMax();
+        return maxElement;
+    }
+
+    int maximum()
+    {
+        if (maxPQ.isEmpty())
+        {
+            throw runtime_error("Priority Queue is empty");
+        }
+        return maxPQ.peek();
+    }
+
+
+
+    void removeMax()
+    {
+        if (maxPQ.isEmpty())
+        {
+            throw runtime_error("Priority Queue is empty");
+        }
+        maxPQ.removeMax();
+    }
+
+
+    bool isEmpty()
+    {
+        return maxPQ.isEmpty();
+    }
+
+
+    void display()
+    {
+        cout << "Priority Queue : ";
+        maxPQ.display();
+    }
+};
+
+
+void heapSort(int arr[], int n)
+{
+    maxHeap heap;
+
+    for (int i = 0; i < n; i++)
+    {
+        heap.insertElement(arr[i]);
+    }
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        arr[i] = heap.peek();
+        heap.removeMax();
+    }
+}
